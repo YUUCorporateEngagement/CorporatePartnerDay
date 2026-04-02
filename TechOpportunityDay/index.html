@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Up Opportunity Day | June 10, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Verdana&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #170055;
+    --orange: #FE6500;
+    --blue: #008AFF;
+    --purple: #B4A1FF;
+    --gray: #EEEEEE;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Verdana, Geneva, sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,138,255,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(180,161,255,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 55% 50%, rgba(254,101,0,0.08) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    border: 1.5px solid var(--orange);
+    padding: 6px 18px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+    position: relative;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 8vw, 88px);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    position: relative;
+    animation: fadeUp 0.7s 0.1s ease both;
+    max-width: 900px;
+  }
+
+  .hero h1 span {
+    color: var(--orange);
+    font-style: italic;
+  }
+
+  .hero-meta {
+    margin-top: 28px;
+    font-size: 15px;
+    color: var(--purple);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-sub {
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.72);
+    max-width: 560px;
+    position: relative;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .hero-cta {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: var(--white);
+    font-family: Verdana, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(254,101,0,0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(254,101,0,0.5);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    font-family: Verdana, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.07);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    animation: fadeUp 1s 0.8s ease both;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    background: var(--orange);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    margin-top: 4px;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 80px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(30px, 5vw, 52px);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--purple);
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 16px;
+    max-width: 680px;
+  }
+
+  /* ─── WHAT IS THIS ─── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 48px;
+  }
+
+  .about-visual {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: 4px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(0,138,255,0.2), rgba(180,161,255,0.15));
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .time-display {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .time-sub {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+  }
+  .date-display {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 1px;
+  }
+
+  /* ─── AGENDA ─── */
+  .agenda-full { background: rgba(255,255,255,0.03); border-radius: 4px; padding: 0; overflow: hidden; margin-top: 40px; border: 1px solid rgba(255,255,255,0.08); }
+
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.2s;
+  }
+  .agenda-item:last-child { border-bottom: none; }
+  .agenda-item:hover { background: rgba(255,255,255,0.03); }
+
+  .agenda-time {
+    padding: 20px 24px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--orange);
+    font-weight: bold;
+    border-right: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+  }
+
+  .agenda-content {
+    padding: 20px 24px;
+  }
+  .agenda-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .agenda-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+    max-width: none;
+    margin: 0;
+  }
+
+  /* ─── WHY PARTICIPATE ─── */
+  .why-section { background: rgba(0,138,255,0.06); border-top: 1px solid rgba(0,138,255,0.15); border-bottom: 1px solid rgba(0,138,255,0.15); }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 32px 24px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(254,101,0,0.4);
+  }
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .card h3 {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--white);
+    margin-bottom: 10px;
+    font-family: Verdana, sans-serif;
+  }
+  .card p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    margin: 0;
+  }
+
+  /* ─── REQUIREMENTS ─── */
+  .req-list {
+    margin-top: 40px;
+    display: grid;
+    gap: 2px;
+  }
+
+  .req-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .req-item:last-child { border-bottom: none; }
+
+  .req-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: rgba(254,101,0,0.3);
+    line-height: 1;
+    min-width: 44px;
+  }
+  .req-text h4 {
+    font-size: 14px;
+    color: var(--white);
+    margin-bottom: 4px;
+    font-family: Verdana, sans-serif;
+  }
+  .req-text p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+  }
+
+  /* ─── ORGS ─── */
+  .orgs-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .org-pill {
+    background: rgba(180,161,255,0.12);
+    border: 1px solid rgba(180,161,255,0.3);
+    color: var(--purple);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-radius: 100px;
+  }
+  .org-pill.tbd {
+    border-style: dashed;
+    color: rgba(255,255,255,0.35);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    text-align: center;
+    padding: 100px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(254,101,0,0.12) 0%, transparent 70%);
+  }
+  .cta-section h2 {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto 24px;
+  }
+  .cta-section p {
+    position: relative;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+  .cta-section .hero-cta { position: relative; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 1px;
+  }
+  footer a { color: var(--blue); text-decoration: none; }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--orange);
+    margin-bottom: 20px;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.8; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .cards { grid-template-columns: 1fr; }
+    .agenda-item { grid-template-columns: 100px 1fr; }
+    .stats-bar { gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-tag">Year Up United Presents</div>
+  <h1>Tech <span>Up</span> Opportunity Day</h1>
+  <div class="hero-meta">June 10, 2026 &nbsp;|&nbsp; 1:00 – 4:00 PM &nbsp;|&nbsp; New York City</div>
+  <p class="hero-sub">A bridge-building event connecting motivated job seekers and career changers with the training programs and employers that can launch their tech careers.</p>
+  <div class="hero-cta">
+    <a href="#register" class="btn-primary">Register Your Organization</a>
+    <a href="#agenda" class="btn-ghost">View the Agenda</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">40+</div>
+    <div class="stat-label">Anticipated Attendees</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">6</div>
+    <div class="stat-label">Training Organizations</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3 hrs</div>
+    <div class="stat-label">Curated Programming</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">Free</div>
+    <div class="stat-label">No Cost to Attend</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section>
+  <div class="section-tag">About the Event</div>
+  <h2>What is Tech Up <em>Opportunity Day?</em></h2>
+  <div class="about-grid">
+    <div>
+      <div class="divider"></div>
+      <p>Tech Up Opportunity Day is a half-day event hosted by Year Up United designed to connect motivated individuals from our pipeline with accredited tech training programs and aligned employers in New York City.</p>
+      <p>Attendees are career changers, first-generation professionals, and recent graduates who are actively exploring how to break into the tech sector. They come ready to learn, ready to engage, and ready to take next steps.</p>
+      <p>The event combines expert panels, hands-on skill building, and a structured Training Organization Fair designed to help participants move from interest to action on the same day.</p>
+    </div>
+    <div class="about-visual">
+      <div class="time-display">1:00 – 4:00</div>
+      <div class="time-sub">Program Hours</div>
+      <div class="date-display">Tuesday, June 10, 2026</div>
+      <div class="date-display" style="color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 4px;">New York City</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PARTICIPATE -->
+<section class="why-section" style="max-width: 100%; padding: 80px 24px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-tag">Why Participate</div>
+    <h2>What Your Organization <em>Gains</em></h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>Direct Pipeline Access</h3>
+        <p>Connect with 40+ motivated, pre-vetted job seekers from the Year Up United network who are actively seeking training and career pathways in tech.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Warm Leads, Not Cold Contacts</h3>
+        <p>Attendees will visit your table primed and informed. A structured skill-building activity prepares them to ask smart questions and engage with purpose.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h3>Community Visibility</h3>
+        <p>Position your program in front of a mission-aligned network of workforce development professionals, alumni, and partner employers across New York City.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda">
+  <div class="section-tag">Event Flow</div>
+  <h2>The Day at a <em>Glance</em></h2>
+  <p>Programming is designed to move attendees through a thoughtful arc: community building, sector knowledge, practical skill development, and direct engagement with training options.</p>
+
+  <div class="agenda-full">
+    <div class="agenda-item">
+      <div class="agenda-time">12:30 PM</div>
+      <div class="agenda-content">
+        <div class="agenda-title">Staff & Organization Arrival</div>
+        <div class="agenda-desc">Setup time for participating organizations and Year Up United team</div>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-time">1:00 PM</div>
+      <div class="agenda-content">
+        <div class="agenda-title">Arrival, Registration & Light Refreshments</div>
+        <div class="agenda-desc">Attendees arrive, check in, and network informally</div>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-time">1:30 PM</div>
+      <div class="agenda-content">
+        <div class="agenda-title">Welcome, Objectives & Networking Warm-Up</div>
+        <div class="agenda-desc">Concentric circle speed networking to build community and set the tone for the day</div>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-time">1:50 PM</div>
+      <div class="agenda-content">
+        <div class="agenda-title">Alumni & Employer Panel</div>
+        <div class="agenda-desc">2 alumni and 3 employers share career pathways, advice, and what it really takes to break into tech in New York</div>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-time">2:30 PM</div>
+      <div class="agenda-content">
+        <div class="agenda-title">Skill-Building Activity: How to Work a Career Fair</div>
+        <div class="agenda-desc">Attendees practice their elevator pitch, learn what questions to ask, and role-play table conversations before heading to the fair</div>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-time">3:00 PM</div>
+      <div class="agenda-content">
+        <div class="agenda-title">🌟 Training Organization Fair</div>
+        <div class="agenda-desc">Attendees visit each organization's table, complete BINGO cards, and scan QR codes to log programs of interest. Your team is live, staffing your table, and collecting warm leads.</div>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-time">3:45 PM</div>
+      <div class="agenda-content">
+        <div class="agenda-title">Wrap-Up, Feedback & Incentive Distribution</div>
+        <div class="agenda-desc">Participants complete a survey, receive incentives, and receive clear next steps including a resource landing page with your organization's information</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REQUIREMENTS -->
+<section>
+  <div class="section-tag">Partner Requirements</div>
+  <h2>What We Ask of <em>Participating Organizations</em></h2>
+  <p>To ensure the best experience for attendees and a smooth day of programming, participating organizations must meet the following criteria and fulfill the following commitments.</p>
+
+  <div class="req-list">
+    <div class="req-item">
+      <div class="req-num">01</div>
+      <div class="req-text">
+        <h4>Active Recruitment Window</h4>
+        <p>Your organization must be actively recruiting or accepting applications within three months of the event date (June 10, 2026). Attendees will leave ready to act, so your pipeline needs to be open.</p>
+      </div>
+    </div>
+    <div class="req-item">
+      <div class="req-num">02</div>
+      <div class="req-text">
+        <h4>Program Information Submission by Deadline</h4>
+        <p>Submit your program details, including areas of focus, eligibility requirements, program length, certifications offered, and your application or next-steps link by the deadline provided. This content will be used to build the post-event resource page for attendees.</p>
+      </div>
+    </div>
+    <div class="req-item">
+      <div class="req-num">03</div>
+      <div class="req-text">
+        <h4>Live Registration Link</h4>
+        <p>Provide a working link for real-time registration or application that will be accessible to attendees at your table via QR code and included in post-event follow-up.</p>
+      </div>
+    </div>
+    <div class="req-item">
+      <div class="req-num">04</div>
+      <div class="req-text">
+        <h4>Attend the Pre-Event Prep Call</h4>
+        <p>A representative from your organization is required to join our pre-event coordination call. Details will be shared after registration is confirmed. This call covers logistics, expectations, and day-of flow.</p>
+      </div>
+    </div>
+    <div class="req-item">
+      <div class="req-num">05</div>
+      <div class="req-text">
+        <h4>Follow-Up Tracking</h4>
+        <p>After the event, participating organizations are asked to track follow-up with leads from the day using Year Up United's provided tracker form. This helps us measure impact and improve future events.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIRMED ORGS -->
+<section style="padding-top: 0;">
+  <div class="section-tag">Participating Organizations</div>
+  <h2>Who's Already <em>at the Table</em></h2>
+  <p>The following organizations have been confirmed or are in conversation to participate in the Training Organization Fair.</p>
+  <div class="orgs-grid">
+    <div class="org-pill">NPower</div>
+    <div class="org-pill">Per Scholas</div>
+    <div class="org-pill">The Knowledge House</div>
+    <div class="org-pill">OBT</div>
+    <div class="org-pill">St. Nicks Alliance</div>
+    <div class="org-pill tbd">+ 1 TBD</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="register" style="max-width: 100%;">
+  <div class="cta-bg"></div>
+  <div class="section-tag" style="position: relative;">Ready to Join?</div>
+  <h2>Register Your <em>Organization</em></h2>
+  <p>Complete the partner registration form to secure your table at the Tech Up Opportunity Day Training Fair. Once submitted, a member of the Year Up United team will confirm your participation and share pre-event logistics.</p>
+  <div class="hero-cta">
+    <a href="#" class="btn-primary">Complete Partner Registration</a>
+  </div>
+  <p style="margin-top: 24px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3);">Questions? Reach out to Hannah Hirtzel at hhirtzel@yearupunited.org</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom: 12px; font-size: 14px; color: rgba(255,255,255,0.5); font-family: 'DM Serif Display', serif; font-style: italic;">Powered by purpose.</p>
+  <p>&copy; 2026 Year Up United &nbsp;|&nbsp; <a href="https://www.yearupunited.org">yearupunited.org</a> &nbsp;|&nbsp; NY/NJ/CT Corporate Engagement</p>
+</footer>
+
+</body>
+</html>
