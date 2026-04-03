@@ -4,21 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tech Up Opportunity Day | June 10, 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Verdana&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #170055;
-    --orange: #FE6500;
-    --blue: #008AFF;
-    --purple: #B4A1FF;
-    --gray: #EEEEEE;
+    --navy: #1A5276;
+    --navy-mid: #1E54A6;
+    --green: #8DC63F;
+    --blue-bright: #1F56C3;
+    --blue: #00AEEF;
+    --green-alt: #39B54A;
+    --purple: #6B4EA8;
+    --dark: #2C2C2C;
+    --gray: #F5F5F5;
     --white: #FFFFFF;
+    --orange: #8DC63F;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: var(--navy);
     color: var(--white);
     overflow-x: hidden;
@@ -41,9 +46,9 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,138,255,0.18) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(180,161,255,0.15) 0%, transparent 55%),
-      radial-gradient(ellipse 40% 40% at 55% 50%, rgba(254,101,0,0.08) 0%, transparent 60%);
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,174,239,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(107,78,168,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 55% 50%, rgba(141,198,63,0.08) 0%, transparent 60%);
   }
 
   .hero-grid {
@@ -58,11 +63,11 @@
   .hero-tag {
     display: inline-block;
     font-size: 11px;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--orange);
-    border: 1.5px solid var(--orange);
+    color: var(--green);
+    border: 1.5px solid var(--green);
     padding: 6px 18px;
     border-radius: 2px;
     margin-bottom: 32px;
@@ -71,7 +76,8 @@
   }
 
   .hero h1 {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
     font-size: clamp(42px, 8vw, 88px);
     line-height: 1.05;
     letter-spacing: -1px;
@@ -81,14 +87,14 @@
   }
 
   .hero h1 span {
-    color: var(--orange);
+    color: var(--green);
     font-style: italic;
   }
 
   .hero-meta {
     margin-top: 28px;
     font-size: 15px;
-    color: var(--purple);
+    color: var(--blue);
     letter-spacing: 1.5px;
     text-transform: uppercase;
     position: relative;
@@ -116,11 +122,11 @@
   }
 
   .btn-primary {
-    background: var(--orange);
+    background: var(--green);
     color: var(--white);
-    font-family: Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
     padding: 16px 36px;
@@ -130,19 +136,19 @@
     text-decoration: none;
     display: inline-block;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 24px rgba(254,101,0,0.35);
+    box-shadow: 0 4px 24px rgba(141,198,63,0.35);
   }
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(254,101,0,0.5);
+    box-shadow: 0 8px 32px rgba(141,198,63,0.5);
   }
 
   .btn-ghost {
     background: transparent;
     color: var(--white);
-    font-family: Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
     padding: 16px 36px;
@@ -182,7 +188,7 @@
 
   /* ─── STATS BAR ─── */
   .stats-bar {
-    background: var(--orange);
+    background: var(--green);
     padding: 20px 40px;
     display: flex;
     justify-content: center;
@@ -193,7 +199,8 @@
     text-align: center;
   }
   .stat-num {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
     font-size: 32px;
     color: var(--white);
     line-height: 1;
@@ -202,7 +209,7 @@
     font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.85);
     margin-top: 4px;
   }
 
@@ -222,7 +229,8 @@
   }
 
   h2 {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
     font-size: clamp(30px, 5vw, 52px);
     line-height: 1.1;
     margin-bottom: 24px;
@@ -230,7 +238,7 @@
 
   h2 em {
     font-style: italic;
-    color: var(--purple);
+    color: var(--blue);
   }
 
   p {
@@ -255,7 +263,7 @@
     aspect-ratio: 4/3;
     border-radius: 4px;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(0,138,255,0.2), rgba(180,161,255,0.15));
+    background: linear-gradient(135deg, rgba(0,174,239,0.2), rgba(107,78,168,0.18));
     border: 1px solid rgba(255,255,255,0.1);
     display: flex;
     align-items: center;
@@ -265,7 +273,8 @@
   }
 
   .time-display {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
     font-size: 48px;
     color: var(--white);
     line-height: 1;
@@ -298,7 +307,7 @@
     padding: 20px 24px;
     font-size: 11px;
     letter-spacing: 1px;
-    color: var(--orange);
+    color: var(--green);
     font-weight: bold;
     border-right: 1px solid rgba(255,255,255,0.07);
     display: flex;
@@ -323,7 +332,7 @@
   }
 
   /* ─── WHY PARTICIPATE ─── */
-  .why-section { background: rgba(0,138,255,0.06); border-top: 1px solid rgba(0,138,255,0.15); border-bottom: 1px solid rgba(0,138,255,0.15); }
+  .why-section { background: rgba(0,174,239,0.06); border-top: 1px solid rgba(0,174,239,0.15); border-bottom: 1px solid rgba(0,174,239,0.15); }
 
   .cards {
     display: grid;
@@ -347,7 +356,7 @@
     width: 44px;
     height: 44px;
     border-radius: 8px;
-    background: var(--orange);
+    background: var(--green);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -356,10 +365,10 @@
   }
   .card h3 {
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 700;
     color: var(--white);
     margin-bottom: 10px;
-    font-family: Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
   .card p {
     font-size: 12px;
@@ -384,9 +393,10 @@
   .req-item:last-child { border-bottom: none; }
 
   .req-num {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
     font-size: 36px;
-    color: rgba(254,101,0,0.3);
+    color: rgba(141,198,63,0.35);
     line-height: 1;
     min-width: 44px;
   }
@@ -394,7 +404,8 @@
     font-size: 14px;
     color: var(--white);
     margin-bottom: 4px;
-    font-family: Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
   }
   .req-text p {
     font-size: 12px;
@@ -411,11 +422,11 @@
   }
 
   .org-pill {
-    background: rgba(180,161,255,0.12);
-    border: 1px solid rgba(180,161,255,0.3);
-    color: var(--purple);
+    background: rgba(107,78,168,0.15);
+    border: 1px solid rgba(107,78,168,0.4);
+    color: #c4b8f0;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 1px;
     padding: 10px 20px;
     border-radius: 100px;
@@ -436,7 +447,7 @@
   .cta-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(254,101,0,0.12) 0%, transparent 70%);
+    background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(141,198,63,0.1) 0%, transparent 70%);
   }
   .cta-section h2 {
     position: relative;
@@ -464,7 +475,7 @@
   .divider {
     width: 60px;
     height: 3px;
-    background: var(--orange);
+    background: var(--green);
     margin-bottom: 20px;
   }
 
@@ -485,17 +496,91 @@
     .agenda-item { grid-template-columns: 100px 1fr; }
     .stats-bar { gap: 32px; }
   }
+
+  /* ─── LOGO BAR ─── */
+  .logo-bar {
+    position: relative;
+    z-index: 10;
+    background: rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .logo-bar-inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logo-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-item img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(1.05);
+  }
+
+  .logo-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.2);
+    flex-shrink: 0;
+  }
+
+  .logo-presents {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    .logo-bar { padding: 14px 20px; }
+    .logo-item img { height: 36px; }
+  }
+
 </style>
 </head>
 <body>
+
+<!-- LOGO BAR -->
+<div class="logo-bar">
+  <div class="logo-bar-inner">
+    <div class="logo-item">
+      <img src="../images/jobsfirst-logo-transparent.png" alt="Jobs First NYC" />
+    </div>
+    <div class="logo-divider"></div>
+    <div class="logo-item">
+      <img src="../images/techsector-logo-transparent (1).png" alt="Tech Sector Network" style="height: 52px;" />
+    </div>
+    <div class="logo-divider"></div>
+    <div class="logo-presents">in partnership with</div>
+    <div class="logo-divider"></div>
+    <div class="logo-item">
+      <img src="../images/yuu-padding_med__003_.png" alt="Year Up United" />
+    </div>
+  </div>
+</div>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <div class="hero-tag">Year Up United Presents</div>
-  <h1>Tech <span>Up</span> Opportunity Day</h1>
-  <div class="hero-meta">June 10, 2026 &nbsp;|&nbsp; 1:00 – 4:00 PM &nbsp;|&nbsp; New York City</div>
+  <div class="hero-tag">June 10, 2026 &nbsp;|&nbsp; 85 Broad Street, 6th Floor, NYC</div>
+  <h1>Tech <span>Up</span> <nobr>Opportunity Day</nobr></h1>
+  <div class="hero-meta">1:00 – 4:00 PM &nbsp;|&nbsp; Free &nbsp;|&nbsp; Open to YUU Pipeline Participants</div>
   <p class="hero-sub">A bridge-building event connecting motivated job seekers and career changers with the training programs and employers that can launch their tech careers.</p>
   <div class="hero-cta">
     <a href="#register" class="btn-primary">Register Your Organization</a>
@@ -534,7 +619,7 @@
   <div class="about-grid">
     <div>
       <div class="divider"></div>
-      <p>Tech Up Opportunity Day is a half-day event hosted by Year Up United designed to connect motivated individuals from our pipeline with accredited tech training programs and aligned employers in New York City.</p>
+      <p>Tech Up Opportunity Day is a half-day event hosted by Jobs First NYC Tech Sector Alliance in partnership with Year Up United, designed to connect motivated individuals from our pipeline with accredited tech training programs and aligned employers in New York City.</p>
       <p>Attendees are career changers, first-generation professionals, and recent graduates who are actively exploring how to break into the tech sector. They come ready to learn, ready to engage, and ready to take next steps.</p>
       <p>The event combines expert panels, hands-on skill building, and a structured Training Organization Fair designed to help participants move from interest to action on the same day.</p>
     </div>
@@ -542,7 +627,8 @@
       <div class="time-display">1:00 – 4:00</div>
       <div class="time-sub">Program Hours</div>
       <div class="date-display">Tuesday, June 10, 2026</div>
-      <div class="date-display" style="color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 4px;">New York City</div>
+      <div class="date-display" style="color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 4px;">85 Broad Street, 6th Floor</div>
+      <div class="date-display" style="color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 2px;">New York City</div>
     </div>
   </div>
 </section>
@@ -680,14 +766,27 @@
 <section style="padding-top: 0;">
   <div class="section-tag">Participating Organizations</div>
   <h2>Who's Already <em>at the Table</em></h2>
-  <p>The following organizations have been confirmed or are in conversation to participate in the Training Organization Fair.</p>
-  <div class="orgs-grid">
-    <div class="org-pill">NPower</div>
-    <div class="org-pill">Per Scholas</div>
-    <div class="org-pill">The Knowledge House</div>
-    <div class="org-pill">OBT</div>
-    <div class="org-pill">St. Nicks Alliance</div>
-    <div class="org-pill tbd">+ 1 TBD</div>
+  <p>The following organizations have been confirmed to participate in the Training Organization Fair. Each will have a staffed table, program information, and a live application link ready for attendees.</p>
+
+  <div class="partner-logos">
+    <a href="https://www.npower.org" target="_blank" class="partner-logo-item">
+      <img src="../images/npower-logo.svg" alt="NPower" />
+    </a>
+    <a href="https://perscholas.org" target="_blank" class="partner-logo-item">
+      <img src="../images/logo-30year1.svg" alt="Per Scholas" />
+    </a>
+    <a href="https://www.theknowledgehouse.org" target="_blank" class="partner-logo-item">
+      <img src="../images/TKH_Horizontal_Purple_Logo.png" alt="The Knowledge House" />
+    </a>
+    <a href="https://obtjobs.org" target="_blank" class="partner-logo-item">
+      <img src="../images/logo-1.png" alt="OBT – Opportunities for a Better Tomorrow" />
+    </a>
+    <a href="https://stnicksalliance.org" target="_blank" class="partner-logo-item">
+      <img src="../images/SNAvectorlogousedonSquarespace (1).png" alt="St. Nicks Alliance" />
+    </a>
+    <div class="partner-logo-item partner-logo-tbd">
+      <span>+ 1 TBD</span>
+    </div>
   </div>
 </section>
 
@@ -696,18 +795,14 @@
   <div class="cta-bg"></div>
   <div class="section-tag" style="position: relative;">Ready to Join?</div>
   <h2>Register Your <em>Organization</em></h2>
-  <p>Complete the partner registration form to secure your table at the Tech Up Opportunity Day Training Fair. Once submitted, a member of the Year Up United team will confirm your participation and share pre-event logistics.</p>
+  <p>Complete the partner registration form to secure your table at the Tech Up Opportunity Day Training Fair. Once submitted, a member of the Jobs First NYC Tech Sector Alliance and Year Up United team will confirm your participation and share pre-event logistics.</p>
   <div class="hero-cta">
     <a href="#" class="btn-primary">Complete Partner Registration</a>
   </div>
-  <p style="margin-top: 24px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3);">Questions? Reach out to Hannah Hirtzel at hhirtzel@yearupunited.org</p>
+  <p style="margin-top: 24px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3);">Questions? Reach out to Hannah Hirtzel at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b434342595f514e476b524e4a595e5b5e45425f4e4f0544594c">[email&#160;protected]</a></p>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p style="margin-bottom: 12px; font-size: 14px; color: rgba(255,255,255,0.5); font-family: 'DM Serif Display', serif; font-style: italic;">Powered by purpose.</p>
-  <p>&copy; 2026 Year Up United &nbsp;|&nbsp; <a href="https://www.yearupunited.org">yearupunited.org</a> &nbsp;|&nbsp; NY/NJ/CT Corporate Engagement</p>
-</footer>
-
-</body>
-</html>
+  <p style="margin-bottom: 12px; font-size: 14px; color: rgba(255,255,255,0.5); font-family: 'Montserrat', sans-serif; font-style: italic; font-weight: 300;">Powered by purpose.</p>
+  <p>&copy; 2026 Jobs First NYC Tech Sector Alliance &nbsp;&amp;&nbsp; Year Up United &nbsp;|&nbsp; <a hr
