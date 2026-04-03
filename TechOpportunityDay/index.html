@@ -551,6 +551,127 @@
     .logo-item img { height: 36px; }
   }
 
+  /* ─── ABOUT PHOTO ─── */
+  .about-photo {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 320px;
+  }
+
+  .about-photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(26,82,118,0.92), transparent);
+    padding: 28px 20px 16px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.8);
+    text-transform: uppercase;
+  }
+
+  .caption-time { color: var(--green); font-weight: 700; }
+  .caption-dot { color: rgba(255,255,255,0.3); }
+
+  /* ─── PHOTO STRIP ─── */
+  .photo-strip {
+    position: relative;
+    height: 360px;
+    overflow: hidden;
+  }
+
+  .photo-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+
+  .photo-strip-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(26,82,118,0.88) 0%,
+      rgba(26,82,118,0.45) 50%,
+      rgba(26,82,118,0.75) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+  }
+
+  .photo-strip-text { max-width: 680px; }
+  .photo-strip-text h2 { font-size: clamp(24px, 4vw, 42px); margin-bottom: 16px; }
+  .photo-strip-text p { font-size: 15px; color: rgba(255,255,255,0.85); margin: 0 auto; }
+
+  /* ─── PARTNER LOGOS ─── */
+  .partner-logos {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 40px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .partner-logos::-webkit-scrollbar { height: 4px; }
+  .partner-logos::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 2px; }
+  .partner-logos::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+  .partner-logo-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 140px;
+    height: 70px;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    text-decoration: none;
+  }
+  .partner-logo-item:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(141,198,63,0.4);
+    transform: translateY(-2px);
+  }
+  .partner-logo-item img {
+    max-height: 32px;
+    max-width: 110px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .partner-logo-item:hover img { opacity: 1; }
+
+  @media (max-width: 768px) {
+    .partner-logos { gap: 6px; }
+    .partner-logo-item { min-width: 110px; padding: 12px 14px; height: 60px; }
+    .partner-logo-item img { max-height: 26px; max-width: 90px; }
+  }
+
 </style>
 </head>
 <body>
@@ -623,12 +744,15 @@
       <p>Attendees are career changers, first-generation professionals, and recent graduates who are actively exploring how to break into the tech sector. They come ready to learn, ready to engage, and ready to take next steps.</p>
       <p>The event combines expert panels, hands-on skill building, and a structured Training Organization Fair designed to help participants move from interest to action on the same day.</p>
     </div>
-    <div class="about-visual">
-      <div class="time-display">1:00 – 4:00</div>
-      <div class="time-sub">Program Hours</div>
-      <div class="date-display">Tuesday, June 10, 2026</div>
-      <div class="date-display" style="color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 4px;">85 Broad Street, 6th Floor</div>
-      <div class="date-display" style="color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 2px;">New York City</div>
+    <div class="about-photo">
+      <img src="../images/opportunity-day-photo.jpg" alt="Tech Up Opportunity Day participant" />
+      <div class="about-photo-caption">
+        <span class="caption-time">1:00 – 4:00 PM</span>
+        <span class="caption-dot">·</span>
+        <span>Tuesday, June 10, 2026</span>
+        <span class="caption-dot">·</span>
+        <span>85 Broad Street, 6th Floor</span>
+      </div>
     </div>
   </div>
 </section>
@@ -784,11 +908,20 @@
     <a href="https://stnicksalliance.org" target="_blank" class="partner-logo-item">
       <img src="../images/SNAvectorlogousedonSquarespace (1).png" alt="St. Nicks Alliance" />
     </a>
-    <div class="partner-logo-item partner-logo-tbd">
-      <span>+ 1 TBD</span>
-    </div>
   </div>
 </section>
+
+<!-- PHOTO STRIP -->
+<div class="photo-strip">
+  <img src="../images/opportunity-day-photo.jpg" alt="Tech Up Opportunity Day" />
+  <div class="photo-strip-overlay">
+    <div class="photo-strip-text">
+      <div class="section-tag" style="justify-content: center; display: flex; margin-bottom: 16px;">Who We Serve</div>
+      <h2>Real People. <em>Real Pathways.</em></h2>
+      <p>The attendees walking through the door on June 10 are motivated, mission-aligned, and ready to move. They just need the right program, the right information, and a table staffed by someone who believes in what they are capable of.</p>
+    </div>
+  </div>
+</div>
 
 <!-- CTA -->
 <section class="cta-section" id="register" style="max-width: 100%;">
