@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>Training Fair Bingo | Tech Up Opportunity Day</title>
+<style>
+  :root{
+    --bg1:#0c0a16; --bg2:#16102b; --bg3:#0a1424;
+    --card:rgba(255,255,255,0.04); --line:rgba(255,255,255,0.09);
+    --text:#f1f5f9; --muted:#94a3b8; --dim:#64748b;
+    --green:#22c55e; --blue:#3b82f6; --purple:#a855f7;
+    --teal:#14b8a6; --orange:#f97316; --gold:#f59e0b; --yellow:#eab308;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;min-height:100vh;background:linear-gradient(150deg,var(--bg1) 0%,var(--bg2) 55%,var(--bg3) 100%);font-family:'Inter','Segoe UI',system-ui,sans-serif;color:var(--text);padding:20px 14px 56px}
+  .wrap{max-width:620px;margin:0 auto}
+  .narrow{max-width:460px;margin:0 auto}
+  header{text-align:center;margin-bottom:22px}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--purple);text-transform:uppercase}
+  h1{margin:4px 0 0;font-size:clamp(24px,6vw,38px);font-weight:800;background:linear-gradient(90deg,#22c55e,#3b82f6,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+  .sub{margin:6px 0 0;color:var(--muted);font-size:13px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px}
+  label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
+  input,textarea,select{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:11px 14px;color:var(--text);font-size:15px;outline:none;font-family:inherit}
+  textarea{resize:vertical}
+  .field{margin-bottom:14px}
+  .btn{width:100%;padding:13px;border-radius:10px;border:none;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .15s}
+  .btn-primary{background:linear-gradient(90deg,#7c3aed,#2563eb);color:#fff}
+  .btn-green{background:linear-gradient(90deg,#16a34a,#15803d);color:#fff}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--muted);font-size:13px;padding:10px;margin-top:8px}
+  .btn:disabled{background:rgba(255,255,255,0.08);color:#475569;cursor:not-allowed}
+  .consent{display:flex;gap:12px;align-items:flex-start;border-radius:10px;padding:12px 14px;cursor:pointer;margin-bottom:20px;transition:all .15s;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04)}
+  .consent.on{background:rgba(34,197,94,0.1);border-color:#22c55e66}
+  .consent .box{width:20px;height:20px;min-width:20px;border-radius:5px;border:2px solid #475569;display:flex;align-items:center;justify-content:center;color:#0c0a16;font-weight:900;font-size:13px;margin-top:1px}
+  .consent.on .box{border-color:var(--green);background:var(--green)}
+  .consent .txt{font-size:13px;color:var(--muted);line-height:1.45}
+  .consent.on .txt{color:#bbf7d0}
+  .bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;background:var(--card);border-radius:10px;padding:9px 14px;border:1px solid rgba(255,255,255,0.08);font-size:14px}
+  .tracker{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 14px;margin-bottom:18px}
+  .tracker h3{margin:0;font-size:14px;font-weight:700}
+  .tracker .hint{margin:0 0 12px;font-size:11.5px;color:var(--dim)}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{padding:7px 13px;border-radius:99px;font-size:12.5px;font-weight:600;cursor:pointer;border:1.5px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);color:var(--muted);transition:all .15s;user-select:none}
+  .progress{background:rgba(255,255,255,0.06);border-radius:99px;height:6px;overflow:hidden;margin-top:12px}
+  .progress>div{height:100%;transition:width .3s;background:linear-gradient(90deg,#eab308,#22c55e)}
+  .headers{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:4px}
+  .hd{text-align:center;padding:7px 2px 4px;border-radius:8px 8px 0 0}
+  .hd .big{font-size:21px;font-weight:900;line-height:1}
+  .hd .small{font-size:8.5px;font-weight:700;opacity:.85;letter-spacing:.06em;text-transform:uppercase}
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+  .sq{aspect-ratio:1;border-radius:8px;padding:5px;border:2px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all .15s;text-align:center;position:relative;font-size:clamp(7px,1.5vw,9.5px);color:var(--dim);line-height:1.3}
+  .sq .tag{position:absolute;top:3px;right:4px;font-size:8px;font-weight:800}
+  .sq .tick{font-size:14px;margin-bottom:1px}
+  .sq.locked{cursor:default}
+  .callout{margin-top:12px;display:flex;gap:10px;align-items:center;background:rgba(249,115,22,0.08);border:1px dashed #f9731666;border-radius:10px;padding:10px 14px;font-size:12px;color:#fdba74;line-height:1.45}
+  .bingo-banner{text-align:center;background:linear-gradient(90deg,#78350f,#92400e);border:2px solid var(--gold);border-radius:12px;padding:14px;margin-bottom:14px}
+  .stars{display:flex;gap:8px}
+  .star{flex:1;text-align:center;padding:10px 0;border-radius:10px;cursor:pointer;font-size:22px;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);transition:all .12s;filter:grayscale(1) opacity(.45)}
+  .star.on{background:rgba(245,158,11,0.18);border-color:var(--gold);filter:none}
+  .err{color:#f87171;font-size:13px;text-align:center;margin-bottom:10px;line-height:1.4}
+  .hidden{display:none}
+  .center{text-align:center}
+  .q{font-size:13.5px;font-weight:600;color:#cbd5e1;margin-bottom:8px;display:block}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Tech Up Opportunity Day</div>
+  <h1>Training Fair Bingo</h1>
+  <p class="sub">Visit tables. Ask questions. Complete a row, column, or diagonal.</p>
+</header>
+
+<!-- SIGN IN -->
+<div id="screen-signin" class="narrow">
+  <div class="card">
+    <h2 style="margin:0 0 18px;font-size:18px;font-weight:700">Sign In to Play</h2>
+    <div class="field"><label>Full Name *</label><input id="in-name" placeholder="First Last" autocomplete="name"></div>
+    <div class="field"><label>Email</label><input id="in-email" type="email" placeholder="you@email.com" autocomplete="email"></div>
+    <div class="field" style="margin-bottom:18px"><label>Phone</label><input id="in-phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel"></div>
+    <div class="consent" id="consent-box" onclick="toggleConsent()">
+      <div class="box" id="consent-check"></div>
+      <div class="txt">I consent to be contacted by the training providers I'm interested in about enrollment, programs, and next steps.</div>
+    </div>
+    <button class="btn btn-primary" id="btn-start" onclick="startGame()">Start Playing →</button>
+  </div>
+</div>
+
+<!-- BOARD -->
+<div id="screen-board" class="wrap hidden">
+  <div class="bar">
+    <div><span style="color:var(--muted)">Playing: </span><strong id="player-name"></strong></div>
+    <div id="score" style="font-weight:700;color:var(--blue)"></div>
+  </div>
+  <div id="bingo-banner" class="bingo-banner hidden">
+    <div style="font-size:26px">🎉</div>
+    <div style="color:#fef3c7;font-weight:800;font-size:18px">BINGO!</div>
+    <div style="color:#fde68a;font-size:12px">Your finish time is locked in. Keep going to fill the whole card!</div>
+  </div>
+
+  <div class="tracker">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px">
+      <h3>🏛️ Partner Tables Visited</h3>
+      <span id="visit-count" style="font-size:13px;font-weight:800;color:var(--muted)">0/7</span>
+    </div>
+    <p class="hint">Tap each table you visit. Milestones auto-fill bingo squares (3+, 5+, all 7).</p>
+    <div class="chips" id="org-chips"></div>
+    <div class="progress"><div id="visit-bar" style="width:0%"></div></div>
+  </div>
+
+  <div class="headers" id="col-headers"></div>
+  <div class="grid" id="bingo-grid"></div>
+
+  <div class="callout">
+    <div style="font-size:20px">🚀</div>
+    <div><strong>Digital Pipeline Bonus:</strong> Create a profile on The Digital Pipeline and earn <strong>2 squares at once</strong>. Tap either orange square when you're done.</div>
+  </div>
+
+  <div class="progress" style="margin-top:14px"><div id="total-bar" style="width:4%;background:linear-gradient(90deg,#22c55e,#3b82f6,#a855f7)"></div></div>
+  <button class="btn btn-primary" style="margin-top:14px" onclick="goFeedback()">I'm Done → Quick Feedback</button>
+</div>
+
+<!-- FEEDBACK -->
+<div id="screen-feedback" class="narrow hidden">
+  <div class="card">
+    <h2 style="margin:0 0 4px;font-size:18px;font-weight:700">Before you go: 3 quick questions</h2>
+    <p style="margin:0 0 20px;font-size:12.5px;color:var(--dim)">This takes 30 seconds and helps us make the next event better.</p>
+
+    <div style="margin-bottom:20px">
+      <span class="q">1. How was your overall experience today?</span>
+      <div class="stars" id="stars"></div>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <span class="q" style="margin-bottom:4px">2. Which training programs are you most interested in?</span>
+      <p style="margin:0 0 8px;font-size:11px;color:var(--dim)">Select all that apply.</p>
+      <div class="chips" id="program-chips"></div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <span class="q">3. What would make this event even better?</span>
+      <textarea id="fb-improve" rows="3" placeholder="Your honest thoughts..."></textarea>
+    </div>
+
+    <div class="err hidden" id="save-error"></div>
+    <button class="btn btn-green" id="btn-submit" onclick="submitCard()">Submit My Card ✓</button>
+    <button class="btn btn-ghost" onclick="showScreen('board')">← Back to my board</button>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div id="screen-success" class="narrow hidden">
+  <div class="card center" style="border-color:rgba(34,197,94,0.3)">
+    <div style="font-size:46px;margin-bottom:10px">🎉</div>
+    <h2 style="margin:0 0 8px;color:var(--green);font-size:22px;font-weight:800" id="success-title">You're All Set!</h2>
+    <p style="color:var(--muted);margin:0 0 4px;font-size:14.5px" id="success-stats"></p>
+    <p style="color:var(--gold);font-weight:700;font-size:15px;margin:6px 0 0" id="success-bingo"></p>
+    <p style="color:#fdba74;font-size:13px;margin:6px 0 0" id="success-dp"></p>
+    <p style="color:#475569;font-size:12px;margin:14px 0 20px">Show this screen to event staff to claim your prize entry.</p>
+    <button class="btn btn-primary" onclick="location.reload()">Start a New Card →</button>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   CONFIG — paste your Airtable Personal Access Token below.
+   Create one at https://airtable.com/create/tokens with:
+     • Scope: data.records:write  (and data.records:read)
+     • Access: ONLY the "Training Fair Bingo Tracker" base
+   Revoke the token after the event.
+   ════════════════════════════════════════════════════════════ */
+const AIRTABLE_TOKEN = "pat5ZWWKZ8hILcGpt.807bdcd8ea52ccd5fe9929dae2f186b8ee5887d375032f817246f0f71135a90e";
+const BASE_ID  = "appdtnGjzSGQpa5AL";
+const TABLE_ID = "tbl2d9wmGCV4w884n";
+
+/* ── Airtable field IDs ── */
+const F = {
+  name:"fldyVwUpDuBhaBFJS", email:"fldkSMTqrqU1w3qQB", phone:"fld1Px4JtZt7H7HxW",
+  dateAttended:"fldyikJObzkEwHAYr", consent:"fld1Y4evd2sip1ETc",
+  gotBingo:"fld07AXVqcDXTq7rQ", bingoTime:"fldiLDk4YRIuFzAyZ",
+  dpProfile:"fldAWbSKHaBeBP493", free:"fld0lfU7LLaKXWuOe",
+  fbRating:"fldzEVByzDzm1Vf7Q", fbPrograms:"fldDAubXEYzBDAFmg", fbImprove:"fld86pAbHdp7DrUYH",
+};
+
+const ORGS = [
+  {key:"OBT", fieldId:"fldvl498sDEu5U31L", color:"#f97316"},
+  {key:"TKH", label:"The Knowledge House", fieldId:"fldFKX4od7DxHMPL2", color:"#a855f7"},
+  {key:"Per Scholas", fieldId:"fldDbJTRr2PDW1qYq", color:"#3b82f6"},
+  {key:"Empower", fieldId:"fldGznfAUHOGGHSCC", color:"#ef4444"},
+  {key:"Marcy Lab", fieldId:"fldcTssgdixgMXAzm", color:"#ec4899"},
+  {key:"St. Nicks", label:"St. Nicks Alliance", fieldId:"fldmFwEif7a9pgcQw", color:"#14b8a6"},
+  {key:"Digital Pipeline", label:"The Digital Pipeline", fieldId:"flds76WyHvVApK6fj", color:"#22c55e"},
+  {key:"Other", label:"Other Org", fieldId:"flduf1xva6g9athSm", color:"#94a3b8"},
+];
+const NAMED_COUNT = 7;
+const PROGRAMS = ["OBT","The Knowledge House","Per Scholas","Empower","Marcy Lab","St. Nicks Alliance","The Digital Pipeline","Still deciding"];
+
+const GRID = [
+  [
+    {id:"B1",label:"Visited every partner table",fieldId:"fldOF0SeNiHH3V5rJ",type:"task",color:"#22c55e"},
+    {id:"I1",label:"Connected with a rep on LinkedIn",fieldId:"fldHORPBMnl41HwVC",type:"task",color:"#3b82f6"},
+    {id:"N1",label:"Asked about job placement rates",fieldId:"fldueoRQIhHqPGzgU",type:"task",color:"#a855f7"},
+    {id:"G1",label:"Identified your top program of interest",fieldId:"fldX2iGTNjyRYnyFj",type:"task",color:"#14b8a6"},
+    {id:"DP_A",label:"Created a profile on The Digital Pipeline",type:"dp",color:"#f97316"},
+  ],
+  [
+    {id:"B2",label:"Asked about the application process",fieldId:"fld9VI6vsFdgsWKQf",type:"task",color:"#22c55e"},
+    {id:"I2",label:"Exchanged contact info with another job seeker",fieldId:"fldvTTbivpEPOOpu2",type:"task",color:"#3b82f6"},
+    {id:"N2",label:"Asked about stipends or financial support",fieldId:"fld1IyptsbG4VeJ1U",type:"task",color:"#a855f7"},
+    {id:"G2",label:"Wrote down one next step before leaving",fieldId:"fldrDPj4YCxhXP0kB",type:"task",color:"#14b8a6"},
+    {id:"DP_B",label:"Digital Pipeline profile (bonus square)",type:"dp",color:"#f97316"},
+  ],
+  [
+    {id:"B3",label:"Picked up materials from 3+ orgs",fieldId:"fldAyyMxxbogkCwAq",type:"task",color:"#22c55e"},
+    {id:"I3",label:"Introduced yourself to a speaker or panelist",fieldId:"fldkprMbwUydDD885",type:"task",color:"#3b82f6"},
+    {id:"FREE",label:"FREE SPACE",type:"free",color:"#f59e0b"},
+    {id:"G3",label:"Asked about start dates or upcoming cohorts",fieldId:"fldJ9qI90FPvzIkF1",type:"task",color:"#14b8a6"},
+    {id:"V3",label:"Visited 3+ partner tables",type:"auto",threshold:3,color:"#eab308"},
+  ],
+  [
+    {id:"B4",label:"Learned what certifications one org offers",fieldId:"fldcPDfPJpTZNs7wU",type:"task",color:"#22c55e"},
+    {id:"I4",label:"Got contact info from a training org rep",fieldId:"fldtpOUqerb8lOw7G",type:"task",color:"#3b82f6"},
+    {id:"N3",label:"Found out which industries an org trains for",fieldId:"fldrsoO5PPFMtq9xl",type:"task",color:"#a855f7"},
+    {id:"G4",label:"Left with a follow-up plan for at least one org",fieldId:"fldJJRcPvGprFXQTj",type:"task",color:"#14b8a6"},
+    {id:"V5",label:"Visited 5+ partner tables",type:"auto",threshold:5,color:"#eab308"},
+  ],
+  [
+    {id:"B5",label:"Asked about program length or schedule",fieldId:"fld2oeJ2QX6bPRDJA",type:"task",color:"#22c55e"},
+    {id:"I5",label:"Shared your elevator pitch with someone new",fieldId:"fld3mR422sxh9Kl2U",type:"task",color:"#3b82f6"},
+    {id:"N4",label:"Asked about eligibility requirements",fieldId:"fldakjKJ1PHDuJbLx",type:"task",color:"#a855f7"},
+    {id:"G5",label:"Took notes or a photo of what you learned",fieldId:"fldp890edOoR3FjAv",type:"task",color:"#14b8a6"},
+    {id:"VALL",label:"Visited ALL 7 partner tables",type:"auto",threshold:7,color:"#eab308"},
+  ],
+];
+const ALL = GRID.flat();
+const HEADERS = [["B","Explore","#22c55e"],["I","Connect","#3b82f6"],["N","Navigate","#a855f7"],["G","Get Specific","#14b8a6"],["O","Opportunity","#f97316"]];
+
+/* ── State ── */
+const state = {
+  participant:{name:"",email:"",phone:"",consent:false},
+  visited:{}, tapped:{}, dpDone:false,
+  bingoTime:null, rating:0, programs:[], improve:"",
+};
+
+/* ── Helpers ── */
+const $ = id => document.getElementById(id);
+function showScreen(name){
+  ["signin","board","feedback","success"].forEach(s => $("screen-"+s).classList.toggle("hidden", s!==name));
+  window.scrollTo(0,0);
+}
+function namedVisitCount(){ return ORGS.filter(o=>o.key!=="Other"&&state.visited[o.key]).length; }
+function isChecked(sq){
+  if(sq.type==="free") return true;
+  if(sq.type==="dp") return state.dpDone;
+  if(sq.type==="auto") return namedVisitCount()>=sq.threshold;
+  return !!state.tapped[sq.id];
+}
+function completedCount(){ return ALL.filter(isChecked).length; }
+function hasBingo(){
+  const m={}; ALL.forEach(sq=>m[sq.id]=isChecked(sq));
+  for(let r=0;r<5;r++) if(GRID[r].every(sq=>m[sq.id])) return true;
+  for(let c=0;c<5;c++) if(GRID.every(row=>m[row[c].id])) return true;
+  if([0,1,2,3,4].every(i=>m[GRID[i][i].id])) return true;
+  if([0,1,2,3,4].every(i=>m[GRID[i][4-i].id])) return true;
+  return false;
+}
+
+/* ── Sign in ── */
+function toggleConsent(){
+  state.participant.consent = !state.participant.consent;
+  $("consent-box").classList.toggle("on", state.participant.consent);
+  $("consent-check").textContent = state.participant.consent ? "✓" : "";
+}
+function startGame(){
+  const name = $("in-name").value.trim();
+  if(!name){ $("in-name").focus(); return; }
+  state.participant.name = name;
+  state.participant.email = $("in-email").value.trim();
+  state.participant.phone = $("in-phone").value.trim();
+  $("player-name").textContent = name;
+  renderBoard();
+  showScreen("board");
+}
+
+/* ── Board rendering ── */
+function renderBoard(){
+  // Org chips
+  $("org-chips").innerHTML = ORGS.map(o=>{
+    const on = !!state.visited[o.key];
+    return `<div class="chip" style="${on?`border-color:${o.color};background:${o.color}26;color:${o.color}`:""}" onclick="toggleOrg('${o.key}')">${on?"✓ ":""}${o.label||o.key}</div>`;
+  }).join("");
+  const nv = namedVisitCount();
+  $("visit-count").textContent = nv+"/7";
+  $("visit-count").style.color = nv>=7 ? "var(--green)" : "var(--muted)";
+  $("visit-bar").style.width = (nv/7*100)+"%";
+
+  // Headers
+  $("col-headers").innerHTML = HEADERS.map(([h,l,c])=>
+    `<div class="hd" style="background:${c}1f"><div class="big" style="color:${c}">${h}</div><div class="small" style="color:${c}">${l}</div></div>`
+  ).join("");
+
+  // Grid
+  $("bingo-grid").innerHTML = GRID.map(row=>row.map(sq=>{
+    const on = isChecked(sq);
+    const locked = sq.type==="free"||sq.type==="auto";
+    const dash = sq.type==="dp" ? "dashed" : "solid";
+    let inner = "";
+    if(sq.type==="free"){
+      inner = `<div style="font-size:17px">⭐</div><div style="font-size:8px;font-weight:800;color:#f59e0b;margin-top:2px">FREE</div>`;
+    } else {
+      inner = `${on?'<div class="tick">✓</div>':""}<div style="${on?`color:${sq.color};font-weight:600`:""}">${sq.label}</div>`;
+    }
+    const tag = sq.type==="dp" ? `<div class="tag" style="color:#f97316">2X</div>` : sq.type==="auto" ? `<div class="tag" style="color:#eab308">AUTO</div>` : "";
+    return `<div class="sq ${locked?"locked":""}" style="border-style:${dash};${on?`border-color:${sq.color};background:${sq.color}24`:""}" onclick="tapSquare('${sq.id}')">${tag}${inner}</div>`;
+  }).join("")).join("");
+
+  // Score + bingo
+  const cc = completedCount();
+  const b = hasBingo();
+  $("score").textContent = `${cc}/25 ${b?"🎉 BINGO!":""}`;
+  $("score").style.color = b ? "var(--gold)" : "var(--blue)";
+  $("total-bar").style.width = (cc/25*100)+"%";
+
+  if(b && !state.bingoTime){
+    state.bingoTime = new Date().toISOString();
+    $("bingo-banner").classList.remove("hidden");
+    setTimeout(()=>$("bingo-banner").classList.add("hidden"), 4000);
+  }
+}
+function toggleOrg(key){ state.visited[key]=!state.visited[key]; renderBoard(); }
+function tapSquare(id){
+  const sq = ALL.find(s=>s.id===id);
+  if(!sq || sq.type==="free" || sq.type==="auto") return;
+  if(sq.type==="dp"){ state.dpDone=!state.dpDone; }
+  else { state.tapped[id]=!state.tapped[id]; }
+  renderBoard();
+}
+
+/* ── Feedback ── */
+function goFeedback(){
+  $("stars").innerHTML = [1,2,3,4,5].map(n=>
+    `<div class="star ${state.rating>=n?"on":""}" onclick="setRating(${n})">⭐</div>`
+  ).join("");
+  $("program-chips").innerHTML = PROGRAMS.map(p=>{
+    const on = state.programs.includes(p);
+    return `<div class="chip" style="${on?"border-color:#a855f7;background:rgba(168,85,247,0.18);color:#d8b4fe":""}" onclick="toggleProgram('${p.replace(/'/g,"\\'")}')">${on?"✓ ":""}${p}</div>`;
+  }).join("");
+  showScreen("feedback");
+}
+function setRating(n){ state.rating=n; goFeedback(); }
+function toggleProgram(p){
+  state.programs = state.programs.includes(p) ? state.programs.filter(x=>x!==p) : [...state.programs,p];
+  goFeedback();
+}
+
+/* ── Save to Airtable (direct REST API) ── */
+function buildFields(){
+  const f = {
+    [F.name]: state.participant.name,
+    [F.dateAttended]: new Date().toISOString().split("T")[0],
+    [F.consent]: state.participant.consent,
+    [F.gotBingo]: !!state.bingoTime,
+    [F.free]: true,
+    [F.dpProfile]: state.dpDone,
+  };
+  if(state.participant.email) f[F.email]=state.participant.email;
+  if(state.participant.phone) f[F.phone]=state.participant.phone;
+  if(state.bingoTime) f[F.bingoTime]=state.bingoTime;
+  if(state.rating>0) f[F.fbRating]=state.rating;
+  if(state.programs.length) f[F.fbPrograms]=state.programs;
+  const improve = $("fb-improve").value.trim();
+  if(improve) f[F.fbImprove]=improve;
+  ORGS.forEach(o=>{ f[o.fieldId]=!!state.visited[o.key]; });
+  ALL.forEach(sq=>{ if(sq.type==="task") f[sq.fieldId]=!!state.tapped[sq.id]; });
+  return f;
+}
+
+async function submitCard(){
+  const btn = $("btn-submit"), errBox = $("save-error");
+  errBox.classList.add("hidden");
+  if(AIRTABLE_TOKEN==="PASTE_YOUR_TOKEN_HERE"){
+    errBox.textContent = "Setup needed: add your Airtable token in the CONFIG section of this file.";
+    errBox.classList.remove("hidden"); return;
+  }
+  btn.disabled = true; btn.textContent = "Saving...";
+
+  for(let attempt=1; attempt<=2; attempt++){
+    try{
+      const res = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`,{
+        method:"POST",
+        headers:{
+          "Authorization":"Bearer "+AIRTABLE_TOKEN,
+          "Content-Type":"application/json",
+        },
+        body: JSON.stringify({ records:[{fields:buildFields()}], typecast:true }),
+      });
+      const data = await res.json();
+      if(res.ok && data.records && data.records[0] && data.records[0].id){
+        showSuccess(); btn.disabled=false; btn.textContent="Submit My Card ✓";
+        return;
+      }
+      throw new Error(data.error ? (data.error.message||data.error.type||JSON.stringify(data.error)) : "HTTP "+res.status);
+    }catch(err){
+      if(attempt===2){
+        errBox.textContent = "Save failed: "+(err.message||"connection issue")+". Check your connection and try again, or show your screen to event staff.";
+        errBox.classList.remove("hidden");
+        btn.disabled=false; btn.textContent="Submit My Card ✓";
+      }
+    }
+  }
+}
+
+function showSuccess(){
+  $("success-title").textContent = `You're All Set, ${state.participant.name.split(" ")[0]}!`;
+  $("success-stats").innerHTML = `<strong style="color:var(--text)">${completedCount()} squares</strong> completed • <strong style="color:var(--text)">${namedVisitCount()}/7 tables</strong> visited`;
+  $("success-bingo").textContent = state.bingoTime ? `🏆 BINGO locked at ${new Date(state.bingoTime).toLocaleTimeString([],{hour:"numeric",minute:"2-digit"})}` : "";
+  $("success-dp").textContent = state.dpDone ? "🚀 Digital Pipeline profile created" : "";
+  showScreen("success");
+}
+</script>
+</body>
+</html>
